@@ -1,0 +1,10 @@
+@use 'base';
+@use 'layout-home';
+@use 'layout-shop';
+@use 'layout-singleProduct';
+@use 'layout-login';
+
+
+html {
+    scroll-behavior: smooth;
+}
