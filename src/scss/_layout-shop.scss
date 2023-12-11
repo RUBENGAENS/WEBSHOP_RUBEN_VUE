@@ -1,0 +1,170 @@
+@use 'base' as *;
+
+section {
+.heading_shop {
+        @include flexLayout ();
+        flex-direction: column;
+        padding-top: 150px;
+        h1 {
+            font-family: $font-candal;
+            font-size: 50px;
+            padding-bottom: 25px;
+        }
+        p {
+            font-family: $font-krona;
+            font-size: 18px;
+        }
+    }
+.buttons {
+    .collections {
+        font-family: $font-krona;
+        font-size: 30px;
+        padding-top: 100px;
+        padding-bottom: 20px;
+        @include flexLayout ();
+    }
+    .all_buttons {
+        @include flexLayout ();
+        display: flex;
+    }
+    .bt-1, .bt-2, .bt-3, .bt-4 {
+        font-family: $font-krona;
+        font-size: 20px;
+        margin: 20px;
+    }
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        vertical-align: top;
+      }
+      
+      input[type="radio"]::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #000;
+        margin-right: 5px;
+      }
+      
+      input[type="radio"]:checked::before {
+        background-color: #000; 
+      }
+      .buttons1, .buttons2, .buttons3, .buttons4 {
+        &:hover {
+            cursor: pointer;
+        }
+      }
+}
+}
+.spotlights_shop {
+        font-family: $font-krona;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; 
+        h1 {
+            @include textHead (); 
+            padding-bottom: 30px;
+        }
+        .popular {
+            font-size: 18px;
+        }
+        .fotos {
+            padding-top: 70px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .picture {
+            width: 270px;
+            align-content: center;
+            margin-top: 10px; 
+            margin-right: 90px; 
+            margin-bottom: 10px; 
+            margin-left: 90px; 
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            &:hover {
+                cursor: pointer;
+            }
+        
+    }
+        .spotlight1, .spotlight2, .spotlight3 {
+            font-family: $font-krona;
+            justify-content: center;
+            align-items: center;
+            h3 {
+                padding-top: 20px;
+                @include flexLayout();
+            }
+            p {
+                font-family: $font-roboto;
+                @include flexLayout();
+                font-size: 15px;
+                padding-top: 15px;
+            }
+        }
+    }
+
+#pagination {
+    text-align: center;
+    padding-bottom: 80px;
+    padding-top: 50px;
+    a {
+        font-family: $font-roboto;
+        text-decoration: none;
+        padding: 15px 20px;
+        font-weight: 600;
+        color: #000;
+        i {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .heading_posters {
+        padding-bottom: 40px;
+        .buttons {
+            input[type="radio"] {
+                width: 15px;
+                height: 15px;
+            }
+            input[type=radio]::before {
+                width: 15px;
+                height: 15px;
+            }
+            .collections {
+                font-size: 25px;
+                padding-top: 30px;
+            }
+            .all_buttons {
+                display: flex;
+                flex-direction: column;
+            }
+            .bt-1, .bt-2, .bt-3, .bt-4 {
+                align-items: start;
+                display: flex;
+                .buttons1, .buttons2, .buttons3, .buttons4 {
+                    font-size: 15px;
+                }
+            }
+        }
+      .heading_shop {
+        padding-top: 100px;
+        h1 {
+            font-size: 40px;
+        }
+        p {
+            font-size: 13px;
+        }
+
+    }
+}
+}
