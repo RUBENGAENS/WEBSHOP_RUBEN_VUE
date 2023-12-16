@@ -23,10 +23,5 @@ export default {
 
 
 
-
-
-
 <style>
-
 </style>
-
