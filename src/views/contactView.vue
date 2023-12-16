@@ -5,7 +5,7 @@
 
 <template>
 
-<h1>SHOPP</h1>
+
 
 
 
@@ -18,7 +18,7 @@
 
 
 
-<style>
+<style scoped>
 
 </style>
 
