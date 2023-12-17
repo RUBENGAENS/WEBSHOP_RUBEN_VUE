@@ -6,6 +6,7 @@ import cartView from '@/views/cartView.vue'
 import loginView from '@/views/loginView.vue'
 import contactView from '@/views/contactView.vue'
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -29,7 +30,10 @@ const router = createRouter({
             path: '/FooterComponent',
             component: contactView
         },
-    ]
-})
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        return { top: 0 };
+    },
+});
 
 export default router
