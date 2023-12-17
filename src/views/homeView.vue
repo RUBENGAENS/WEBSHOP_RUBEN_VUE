@@ -1,15 +1,47 @@
 <script>
+
+import ProductCardComponent from "@/components/ProductCardComponent.vue";
+  
 export default {
-  data() {
-    return {
-      currentImage: 0,
-    };
-  },
-  methods: {
-    changeImage(index) {
-      this.currentImage = index;
+  components: {
+      ProductCard: ProductCardComponent,
     },
-  },
+    data() {
+      return {
+        products: [
+    {
+      "id": 1,
+      "title": "Puzzles",
+      "description": "Powerful laptop for work and entertainment",
+      "image": "src/assets/puzzle_foto.png",
+      "hoverImage": "src/assets/puzzle_mockup2.png",
+      "price": 24.99,
+      "vatRate": 0.21,
+      "stockQuantity": 50
+    },
+    {
+      "id": 2,
+      "title": "Riverwalk",
+      "description": "Latest model with high-resolution camera",
+      "image": "src/assets/riverwalk_foto.png",
+      "hoverImage": "src/assets/puzzle_mockup2.png",
+      "price": 24.99,
+      "vatRate": 0.21,
+      "stockQuantity": 100
+    },
+    {
+      "id": 3,
+      "title": "Watermelon",
+      "description": "Noise-canceling headphones for immersive audio",
+      "image": "src/assets/watermelon_foto.png",
+      "hoverImage": "src/assets/puzzle_mockup2.png",
+      "price": 24.99,
+      "vatRate": 0.21,
+      "stockQuantity": 75
+    }
+  ],
+ };
+}
 };
 </script>
 
@@ -30,30 +62,16 @@ export default {
       <p>then you've come to the right place!</p>
     </section>
 
-    <section class="spotlights">
+  <section class="spotlights">
       <h1>IN THE SPOTLIGHTS</h1>
       <p class="popular">The most popular</p>
-
-      <div class="fotos">
-        <div class="spotlight1" @mouseover="changeImage(1)" @mouseout="changeImage(2)">
-          <img :src="currentImage === 1 ? ('@/assets/surfing_foto.png') : ('@/assets/surfing_mockup.png')" class="picture" alt="foto1">
-          <h3>Surfing</h3>
-          <p class="price">from 24,99 EUR</p>
-        </div>
-
-        <div class="spotlight2" @mouseover="changeImage(3)" @mouseout="changeImage(4)">
-          <img :src="currentImage === 3 ? ('@/assets/cassette_foto.png') : ('@/assets/cassette_mockup.png')" class="picture" alt="foto2">
-          <h3>Cassette</h3>
-          <p class="price">from 24,99 EUR</p>
-        </div>
-
-        <div class="spotlight3" @mouseover="changeImage(5)" @mouseout="changeImage(6)">
-          <img :src="currentImage === 5 ? ('@/assets/cloud_foto.png') : ('@/assets/cloud_mockup.png')" class="picture" alt="foto3">
-          <h3>Cloud</h3>
-          <p class="price">from 24,99 EUR</p>
-        </div>
-      </div>
     </section>
+
+    <div class="product-list">
+      <div class="product-card-container">
+        <product-card v-for="product in products" :key="product.id" :product="product" />
+      </div>
+    </div>
 
     <section class="posterrover_littleTekst">
       <p>Posterrover is a project where I exhibit my posters.</p>
@@ -70,5 +88,17 @@ export default {
 
 
 <style>
+.product-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1600px;
+  }
 </style>
 

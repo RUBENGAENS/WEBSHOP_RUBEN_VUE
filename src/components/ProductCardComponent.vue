@@ -2,12 +2,12 @@
   <div class="spotlights_shop">
   <div class="product-card">
     <div class="image-container">
-    <img class="picture" :src="product.image" :alt="product.title" />
+      <img @mouseover="isHovered = true" @mouseout="isHovered = false" class="picture" :src="isHovered ? product.hoverImage : product.image" :alt="product.title"/>
   </div>
     <h3>{{ product.title }}</h3>
-    <p>{{ product.description }}</p>
-    <p>from {{ product.price }} EUR</p>
-    <p>Stock: {{ product.stockQuantity }}</p>
+    <p class="discription">{{ product.description }}</p>
+    <p class="price">from {{ product.price }} EUR</p>
+    <p class="stock">Stock: {{ product.stockQuantity }}</p>
   </div>
 </div>
 </template>
@@ -16,6 +16,11 @@
 export default {
   props: {
     product: Object,
+  },
+  data() {
+    return {
+      isHovered: false,
+    };
   },
 };
 </script>
@@ -26,7 +31,6 @@ export default {
   margin: 16px;
   margin-top: 50px;
   width: 400px;
-  
   cursor: pointer;
   justify-content: center;
   p, h3, img, .picture {
@@ -36,19 +40,22 @@ export default {
   }
 }
 
-
 .image-container {
-  flex: 1; /* Hierdoor neemt de image-container het beschikbare verticale ruimte in beslag */
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .product-card img {
-  max-width: 100%; /* Zorgt ervoor dat de afbeelding niet groter is dan de container */
-  max-height: 100%; /* Voorkomt dat de afbeelding de container uitrekt */
+  max-width: 100%;
+  max-height: 100%; 
 }
 
-
+@media (max-width: 480px) {
+    .product-card {
+        width: 300px;
+}
+}
 
 </style>

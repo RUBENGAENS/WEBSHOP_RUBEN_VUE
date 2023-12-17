@@ -1,11 +1,14 @@
 <script>
-
+export default {
+    mounted() {
+        window.scrollTo(0, 0);
+    },
+};
 
 </script>
 
 <template>
 
-<h1>SHOPP</h1>
 
 
 
