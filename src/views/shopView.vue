@@ -59,14 +59,24 @@
     </div>
   </section>
 
-  <div class="product-list">
+<div class="product-list">
     <div class="product-card-container">
-      <product-card v-for="product in filteredProducts" :key="product.id" :product="product" />
+      <product-card v-for="product in paginatedProducts" :key="product.id" :product="product" />
     </div>
   </div>
+
+  <div class="pagination">
+    <button @click="prevPageAndScroll" :disabled="productStore.currentPage === 1">Previous</button>
+    <span>{{ productStore.currentPage }}</span>
+    <button @click="nextPageAndScroll" :disabled="productStore.currentPage * productStore.itemsPerPage >= filteredProducts.length">See more</button>
+  </div>
+
+
 </template>
 
 <script>
+import { useProductStore } from '@/store/productStore.js'
+
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 
 export default {
@@ -75,282 +85,101 @@ export default {
   },
   data() {
     return {
-      products: [
-      {
-    "id": 1,
-    "title": "Puzzles",
-    "description": "Powerful laptop for work and entertainment",
-    "image": "src/assets/puzzle_foto.png",
-    "hoverImage": "src/assets/riverwalk_foto.png",
-    "color": "blue",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 50
-  },
-  {
-    "id": 2,
-    "title": "Riverwalk",
-    "description": "Latest model with high-resolution camera",
-    "image": "src/assets/riverwalk_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "orange",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 100
-  },
-  {
-    "id": 3,
-    "title": "Watermelon",
-    "description": "Noise-canceling headphones for immersive audio",
-    "image": "src/assets/watermelon_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 75
-  },
-  {
-    "id": 4,
-    "title": "Twirl",
-    "description": "Portable tablet for on-the-go productivity",
-    "image": "src/assets/twril_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "green",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 40
-  },
-  {
-    "id": 5,
-    "title": "Cassette",
-    "description": "Fitness tracking and notifications on your wrist",
-    "image": "src/assets/cassette_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "orange",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 60
-  },
-  {
-    "id": 6,
-    "title": "Cloud",
-    "description": "Next-gen gaming console for an immersive gaming experience",
-    "image": "src/assets/cloud_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "orange",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 30
-  },
-  {
-    "id": 7,
-    "title": "Yes",
-    "description": "High-quality camera for capturing precious moments",
-    "image": "src/assets/yes_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 45
-  },
-  {
-    "id": 8,
-    "title": "Portal",
-    "description": "Ergonomic wireless mouse for efficient navigation",
-    "image": "src/assets/portal_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "red",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 90
-  },
-  {
-    "id": 9,
-    "title": "Surfing",
-    "description": "Expand your storage with a reliable external hard drive",
-    "image": "src/assets/surfing_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 55
-  },
-  {
-    "id": 10,
-    "title": "Smile",
-    "description": "Slim and comfortable wireless keyboard for easy typing",
-    "image": "src/assets/smile_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 80
-  },
-  {
-    "id": 11,
-    "title": "Broken Pieces",
-    "description": "Comfortable cotton T-shirt with a stylish print",
-    "image": "src/assets/brokenpieces_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 120
-  },
-  {
-    "id": 12,
-    "title": "Leave",
-    "description": "Fashionable sneakers for a casual look",
-    "image": "src/assets/leave_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "green",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 65
-  },
-  {
-    "id": 13,
-    "title": "Church Mirror",
-    "description": "Spacious backpack for daily essentials",
-    "image": "src/assets/churchmirror_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "green",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 85
-  },
-  {
-    "id": 14,
-    "title": "Lifestyle",
-    "description": "UV-protected sunglasses for a stylish look",
-    "image": "src/assets/lifestyle_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "green",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 70
-  },
-  {
-    "id": 15,
-    "title": "Dragon",
-    "description": "Automatic coffee maker for a perfect brew every time",
-    "image": "src/assets/dragon_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "color": "blue",
-    "category": "new",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 25
-  },
-  {
-      "id": 16,
-      "title": "woooop",
-      "description": "Powerful laptop for work and entertainment",
-      "image": "src/assets/puzzle_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "color": "blue",
-      "category": "new",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 50
-  },
-  {
-      "id": 17,
-      "title": "testttt",
-      "description": "Latest model with high-resolution camera",
-      "image": "src/assets/riverwalk_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 100
-  },
-  {
-      "id": 18,
-      "title": "yoloooo",
-      "description": "Noise-canceling headphones for immersive audio",
-      "image": "src/assets/watermelon_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 75
-  },
-  {
-      "id": 19,
-      "title": "halloo",
-      "description": "Portable tablet for on-the-go productivity",
-      "image": "src/assets/twril_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "color": "red",
-      "vatRate": 0.21,
-      "stockQuantity": 40
-  },
-  {
-      "id": 20,
-      "title": "TESTTT",
-      "description": "Fitness tracking and notifications on your wrist",
-      "image": "src/assets/cassette_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "category": "popular",
-      "color": "red",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 60
-  },
-  {
-    "id": 21,
-    "title": "RUBENNNN",
-    "description": "Fashionable sneakers for a casual look",
-    "image": "src/assets/leave_foto.png",
-    "hoverImage": "src/assets/puzzle_mockup2.png",
-    "category": "popular",
-    "color": "red",
-    "price": 24.99,
-    "vatRate": 0.21,
-    "stockQuantity": 65
-  }
-      ],
+      productStore: useProductStore(),
       selectedCategories: [],
       selectedColors: [],
     };
   },
   computed: {
-  filteredProducts() {
-    let filteredProducts = this.products;
+    paginatedProducts() {
+      
+      let filteredProducts = this.filteredProducts;
 
-    if (this.selectedCategories.length > 0) {
-      filteredProducts = filteredProducts.filter(product => this.selectedCategories.includes(product.category));
-    }
+      
+      const startIndex = (this.productStore.currentPage - 1) * this.productStore.itemsPerPage;
+      const endIndex = startIndex + this.productStore.itemsPerPage;
+      return filteredProducts.slice(startIndex, endIndex);
+    },
 
-    if (this.selectedColors.length > 0) {
-      filteredProducts = filteredProducts.filter(product => this.selectedColors.includes(product.color));
-    }
+    filteredProducts() {
+      let filteredProducts = this.productStore.products;
 
-    return filteredProducts;
+      if (this.selectedCategories.length > 0) {
+        filteredProducts = filteredProducts.filter(product => this.selectedCategories.includes(product.category));
+      }
+
+      if (this.selectedColors.length > 0) {
+        filteredProducts = filteredProducts.filter(product => this.selectedColors.includes(product.color));
+      }
+
+      return filteredProducts;
+    },
   },
-},
-  mounted() {
-    window.scrollTo(0, 0);
-  },
+  methods: {
+    prevPage() {
+      this.productStore.currentPage -= 1;
+    },
+
+    nextPage() {
+      this.productStore.currentPage += 1;
+    },
+    prevPageAndScroll() {
+      this.prevPage();
+      this.scrollToTop();
+    },
+
+    nextPageAndScroll() {
+      this.nextPage();
+      this.scrollToTop();
+    },
+
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+      });
+      },
+    },
 };
 </script>
 
 <style scoped>
-.product-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
 
-.product-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1600px;
-}
+  .product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1600px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pagination button {
+    margin: 0 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color:#2FA293;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .pagination span {
+    font-weight: bold;
+    padding: 5px 10px;
+  }
 </style>
