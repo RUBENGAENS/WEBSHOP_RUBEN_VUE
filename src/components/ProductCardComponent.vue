@@ -24,7 +24,7 @@ export default {
   },
 };
 </script>
-
+§
 <style scoped>
 .product-card {
   padding: 16px;

@@ -1,52 +1,31 @@
 <script>
-
+import { useProductStore } from '@/store/productStore.js';
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
-  
+import PopularProductsComponent from "@/components/PopularProductsComponent.vue"; 
+
 export default {
   components: {
-      ProductCard: ProductCardComponent,
+    ProductCard: ProductCardComponent,
+    PopularProducts: PopularProductsComponent,
+  },
+  data() {
+    return {
+      productStore: useProductStore(),
+    };
+  },
+  computed: {
+    topThreeProducts() {
+      return this.productStore.topThreeProducts;
     },
-    data() {
-      return {
-        products: [
-    {
-      "id": 1,
-      "title": "Puzzles",
-      "description": "Powerful laptop for work and entertainment",
-      "image": "src/assets/puzzle_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 50
-    },
-    {
-      "id": 2,
-      "title": "Riverwalk",
-      "description": "Latest model with high-resolution camera",
-      "image": "src/assets/riverwalk_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 100
-    },
-    {
-      "id": 3,
-      "title": "Watermelon",
-      "description": "Noise-canceling headphones for immersive audio",
-      "image": "src/assets/watermelon_foto.png",
-      "hoverImage": "src/assets/puzzle_mockup2.png",
-      "price": 24.99,
-      "vatRate": 0.21,
-      "stockQuantity": 75
-    }
-  ],
- };
-}
+  },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
 <template>
-  <div>
+
     <section class="banner"></section>
 
     <header>
@@ -64,14 +43,10 @@ export default {
 
   <section class="spotlights">
       <h1>IN THE SPOTLIGHTS</h1>
-      <p class="popular">The most popular</p>
+      <p class="popular">Most in STOCK</p>
     </section>
 
-    <div class="product-list">
-      <div class="product-card-container">
-        <product-card v-for="product in products" :key="product.id" :product="product" />
-      </div>
-    </div>
+    <popular-products></popular-products>
 
     <section class="posterrover_littleTekst">
       <p>Posterrover is a project where I exhibit my posters.</p>
@@ -82,7 +57,7 @@ export default {
       <h1>SIMPLE, <br> COLORFUL DESIGNS</h1>
       <router-link to="/shop" class="browse_button">EXPLORE ALL POSTERS</router-link>
     </section>
-  </div>
+
 </template>
 
 
