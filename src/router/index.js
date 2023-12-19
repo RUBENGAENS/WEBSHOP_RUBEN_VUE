@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import homeView from '@/views/homeView.vue'
-import shopView from '@/views/shopView.vue'
-import cartView from '@/views/cartView.vue'
-import loginView from '@/views/loginView.vue'
-import contactView from '@/views/contactView.vue'
+import homeView from '@/views/homeView.vue';
+import shopView from '@/views/shopView.vue';
+import cartView from '@/views/cartView.vue';
+import loginView from '@/views/loginView.vue';
+import contactView from '@/views/contactView.vue';
+import detailPage from '@/views/detailPage.vue';
+
 
 
 const router = createRouter({
@@ -25,6 +27,12 @@ const router = createRouter({
         {
             path: '/login',
             component: loginView
+        },
+        {
+            path: '/detailpage/:productId',
+            name: 'detailPage',
+            component: detailPage
+            
         },
         {
             path: '/FooterComponent',
