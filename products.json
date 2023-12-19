@@ -74,7 +74,7 @@
   {
     "id": 7,
     "title": "Yes",
-    "description": "High-quality camera for capturing precious moments",
+    "description": "High-quality camera for",
     "image": "src/assets/yes_foto.png",
     "hoverImage": "src/assets/yes_mockup.png",
     "color": "blue",
@@ -98,7 +98,7 @@
   {
     "id": 9,
     "title": "Surfing",
-    "description": "Expand your storage with a reliable external hard drive",
+    "description": "Expand your storage with a ",
     "image": "src/assets/surfing_foto.png",
     "hoverImage": "src/assets/surfing_mockup.png",
     "color": "blue",

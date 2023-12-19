@@ -69,10 +69,14 @@ section {
 }
 }
 .spotlights_shop {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-       
+    font-family: $font-krona;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+        .popular {
+            font-size: 18px;
+        }
         .fotos {
             padding-top: 70px;
             justify-content: center;
@@ -112,15 +116,31 @@ section {
         .picture {
             width: 270px;
             align-content: center;
-            justify-content: center;
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-      
             &:hover {
                 cursor: pointer;
             }
-        
     }
+    .spotlight1, .spotlight2, .spotlight3 {
+        font-family: $font-krona;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            padding-top: 20px;
+            @include flexLayout();
+        }
+        p {
+            font-family: $font-roboto;
+            @include flexLayout();
+            font-size: 15px;
+            padding-top: 15px;
+        }
     }
+}
+
 
 .pagination {
     text-align: center;
