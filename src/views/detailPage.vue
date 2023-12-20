@@ -1,11 +1,9 @@
 <script>
 import { useProductStore } from '@/store/productStore.js';
-import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import PopularProductsComponent from "@/components/PopularProductsComponent.vue"; 
 
 export default {
   components: {
-    ProductCard: ProductCardComponent,
     PopularProducts: PopularProductsComponent,
   },
   data() {
@@ -46,14 +44,17 @@ export default {
         element.innerText = content;
       }
     },
+    addToCart() {
+      // Voeg de huidige productgegevens toe aan de winkelwagen
+      this.productStore.addToCart(this.currentProduct);
+    },
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.getProductDetails();
+    next();
   },
   mounted() {
     this.getProductDetails();
-  },
-  watch: {
-    $route(to, from) {
-      this.getProductDetails();
-    },
   },
 };
 </script>
@@ -61,7 +62,7 @@ export default {
 <template>
   <section id="prodetails" class="section-pt1">
     <div class="single-pro-imgage">
-      <img :src="currentProduct ? currentProduct.image : ''" width="100%" id="mainImg" :alt="currentProduct ? currentProduct.title : ''">
+      <img :src="currentProduct ? currentProduct.imageProduct : ''" width="100%" id="mainImg" :alt="currentProduct ? currentProduct.title : ''">
 
       <div class="small-img-group">
         <div v-for="image in currentProduct ? [currentProduct.image, currentProduct.hoverImage] : []" :key="image" class="small-img-col" @click="updateMainImage(image)">
