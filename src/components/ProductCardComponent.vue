@@ -1,7 +1,7 @@
 <template>
   <div class="spotlights_shop">
     <!-- Voeg de router-link toe om naar de detailpagina te navigeren -->
-    <router-link :to="{ name: 'detailPage', params: { productId: product.id } }" class="no-underline">
+    <router-link :to="{ name: 'detailPage', params: { productId: product.id }, state: { product: product } }" class="no-underline">
       <div class="product-card" @click="goToDetailPage">
         <div class="image-container">
           <img @mouseover="isHovered = true" @mouseout="isHovered = false" class="picture" :src="isHovered ? product.hoverImage : product.image" :alt="product.title"/>
