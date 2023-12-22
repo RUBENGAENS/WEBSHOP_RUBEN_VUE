@@ -1,6 +1,6 @@
 <template>
   <div class="spotlights_shop">
-    <!-- Voeg de router-link toe om naar de detailpagina te navigeren -->
+    
     <router-link :to="{ name: 'detailPage', params: { productId: product.id }, state: { product: product } }" class="no-underline">
       <div class="product-card" @click="goToDetailPage">
         <div class="image-container">
@@ -26,7 +26,7 @@ export default {
     };
   },
   methods: {
-    // Optioneel: Als je ook via een klik op de hele kaart naar de detailpagina wilt gaan
+   
     goToDetailPage() {
       this.$router.push({ name: 'detailPage', params: { productId: this.product.id } });
     },

@@ -33,13 +33,11 @@ export default {
       const user = users.find(u => u.username === this.username && u.password === this.password);
 
       if (user) {
-        // Authenticated, navigate to cart
+       
         this.$router.push('/cart');
 
-        // Set user in Vuex store or wherever you manage your state
-        // this.$store.commit('setUser', user);
+        
       } else {
-        // Display error message
         this.error = 'Ongeldige gebruikersnaam of wachtwoord';
       }
     },

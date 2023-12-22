@@ -39,6 +39,7 @@
         <button @click="simulatePayment">Pay and go to confirmation page</button>
       </form>
     </div>
+    <div class="bottem"></div>
 </template>
 
 <script>
@@ -68,8 +69,11 @@ export default {
 </script>
 
 <style scoped>
+.bottem {
+  padding-bottom: 150px;
+}
 .top {
-  padding-top: 150px;
+  padding-top: 180px;
 }
 .checkout-container {
   max-width: 600px;
@@ -91,19 +95,26 @@ h2 {
   padding-bottom: 10px;
 }
 .form-container {
+  font-family: 'Roboto', sans-serif;
   margin-top: 20px;
 }
 
 .form-group {
   margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .billing-details {
   margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .order-summary {
   margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 button {

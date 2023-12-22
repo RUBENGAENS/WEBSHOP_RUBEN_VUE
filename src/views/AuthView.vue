@@ -10,8 +10,7 @@
         <label for="password" class="user">Password:</label>
         <input v-model="password" type="password" id="password" required>
 
-        
-        <!-- Extra velden voor registratie -->
+  
         <template v-if="isRegistering">
           <label for="email" class="user">E-mail:</label>
           <input v-model="address" type="text" id="email" required>
