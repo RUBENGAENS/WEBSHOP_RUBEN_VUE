@@ -1,68 +1,122 @@
-
 <template>
-    <div class="checkout-container">
-      <h2 class="top">Checkout</h2>
-  
-      <!-- Adresgegevens formulier -->
-      <div>
-        <h3>Adresgegevens</h3>
-        <form @submit.prevent="submitCheckout">
-          <!-- Hier voeg je de inputvelden toe voor adresgegevens -->
-  
-          <!-- Checkbox voor verschillende facturatiegegevens -->
-          <label>
-            <input type="checkbox" v-model="separateBilling">
-            Facturatiegegevens verschillend van adresgegevens
-          </label>
-  
-          <!-- Formulier voor facturatiegegevens (pas zichtbaar bij geactiveerde checkbox) -->
-          <div v-if="separateBilling">
-            <!-- Hier voeg je de inputvelden toe voor facturatiegegevens -->
-          </div>
-  
-          <!-- Overzicht van bestelde producten, BTW en totale prijs -->
-          <div>
-            <h3>Besteloverzicht</h3>
-            <!-- Hier voeg je de logica toe om het besteloverzicht weer te geven -->
-          </div>
-  
-          <!-- Knop om naar de volgende pagina te gaan -->
-          <button @click="simulatePayment">Betaal en ga naar bevestigingspagina</button>
-        </form>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-import testView from '@/views/testView.vue';
+  <div class="top"></div>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+      <h3 class="adres">Address details</h3>
+      <form @submit.prevent="submitCheckout">
+        <div class="form-group">
+          <label for="street">Street:</label>
+          <input v-model="street" type="text" id="street" required>
+        </div>
 
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input v-model="city" type="text" id="city" required>
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" v-model="separateBilling" id="separateBilling">
+          <label for="separateBilling">Billing information different from address information</label>
+        </div>
+
+        <div v-if="separateBilling" class="billing-details">
+          <h3>Billing information</h3>
+          <div class="form-group">
+            <label for="billingStreet">Street:</label>
+            <input v-model="billingStreet" type="text" id="billingStreet" required>
+          </div>
+
+          <div class="form-group">
+            <label for="billingCity">City:</label>
+            <input v-model="billingCity" type="text" id="billingCity" required>
+          </div>
+        </div>
+
+        <div class="order-summary">
+          <h3>Order summary</h3>
+        </div>
+
+        <button @click="simulatePayment">Pay and go to confirmation page</button>
+      </form>
+    </div>
+</template>
+
+<script>
 export default {
   data() {
     return {
+      street: '',
+      city: '',
       separateBilling: false,
-      // Voeg andere data toe die je nodig hebt voor adresgegevens, facturatiegegevens, bestelling, etc.
+      billingStreet: '',
+      billingCity: '',
     };
   },
   methods: {
     submitCheckout() {
-      // Voeg hier logica toe om adresgegevens en facturatiegegevens te verwerken
-      console.log('Adresgegevens ingediend');
+      console.log('Adresgegevens ingediend', this.street, this.city);
+      if (this.separateBilling) {
+        console.log('Facturatiegegevens ingediend', this.billingStreet, this.billingCity);
+      }
     },
     simulatePayment() {
-      // Simuleer een geslaagde betaling en ga naar de bevestigingspagina
       console.log('Betaling geslaagd');
-      this.$router.push('/bevestiging'); // Verander '/bevestiging' naar het daadwerkelijke pad van je bevestigingspagina
+      this.$router.push('/bevestiging');
     },
-  },
-  components: {
-    testView, // Voeg de component toe aan de 'components' sectie
   },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .top {
-    padding-top: 100px;
+  padding-top: 150px;
 }
-  </style>
-  
+.checkout-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  font-family: 'Krona One', sans-serif;
+  padding-bottom: 50px;
+}
+.adres {
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 10px;
+}
+.form-container {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.billing-details {
+  margin-top: 20px;
+}
+
+.order-summary {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #2FA293;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #23746b;
+}
+</style>
