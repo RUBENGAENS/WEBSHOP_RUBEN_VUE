@@ -67,7 +67,7 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !isLoggedIn()) {
-    // Als de gebruiker niet is ingelogd, navigeer naar login
+   
     next('/login');
   } else {
     next();
@@ -75,9 +75,7 @@ router.beforeEach((to, from, next) => {
 });
 
 const isLoggedIn = () => {
-  // Implementeer deze functie om te controleren of een gebruiker is ingelogd
-  // Je kunt bijvoorbeeld een Vuex store gebruiken om de gebruikersstatus bij te houden
-  // of je kunt eenvoudig controleren of er een gebruiker in de lokale opslag is opgeslagen
+  
   return localStorage.getItem('user') !== null;
 };
 
