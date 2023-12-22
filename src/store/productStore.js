@@ -7,7 +7,7 @@ export const useProductStore = defineStore('product', {
     products: productsJson,
     currentPage: 1,
     itemsPerPage: 9,
-    cart: [], 
+    cart: JSON.parse(localStorage.getItem('cart')) || [], 
   }),
   getters: {
     topThreeProducts() {
@@ -25,7 +25,7 @@ export const useProductStore = defineStore('product', {
       return this.cart;
     },
     cartTotalPrice() {
-      return this.cart.reduce((total, item) => total + item.price, 0);
+      return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
     },
   },
   actions: {
@@ -34,13 +34,19 @@ export const useProductStore = defineStore('product', {
     },
     addToCart(product) {
       this.cart.push(product);
+      this.saveCartToLocalStorage(); // Sla het bijgewerkte winkelmandje op in de lokale opslag
     },
     removeFromCart(index) {
       this.cart.splice(index, 1);
+      this.saveCartToLocalStorage(); // Sla het bijgewerkte winkelmandje op in de lokale opslag
     },
     checkout() {
       // Voeg hier eventuele logica toe voor het afrekenen
       this.cart = [];
+      this.saveCartToLocalStorage(); // Sla het lege winkelmandje op in de lokale opslag
+    },
+    saveCartToLocalStorage() {
+      localStorage.setItem('cart', JSON.stringify(this.cart)); // Zet het winkelmandje om naar een string en sla het op in de lokale opslag
     },
   },
 });

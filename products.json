@@ -211,7 +211,7 @@
   },
   {
       "id": 16,
-      "title": "woooop",
+      "title": "test",
       "description": "Powerful laptop for work and entertainment",
       "image": "/src/assets/puzzle_foto.png",
       "mockup": "/src/assets/puzzle_mockup2.png",
@@ -239,7 +239,7 @@
   },
   {
       "id": 18,
-      "title": "yoloooo",
+      "title": "test",
       "description": "Noise-canceling headphones for immersive audio",
       "image": "/src/assets/watermelon_foto.png",
       "mockup": "/src/assets/puzzle_mockup2.png",
@@ -252,7 +252,7 @@
   },
   {
       "id": 19,
-      "title": "halloo",
+      "title": "test",
       "description": "Portable tablet for on-the-go productivity",
       "image": "/src/assets/twril_foto.png",
       "mockup": "/src/assets/puzzle_mockup2.png",

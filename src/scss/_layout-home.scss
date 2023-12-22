@@ -11,8 +11,8 @@ nav {
         z-index: 100000;
         font-family: $font-lexend;
         padding: 5px;
-        padding-left: 190px;
-        padding-right: 130px;
+        padding-left: 100px;
+        padding-right: 120px;
     
         .logo_nav {
             max-width: 150px;
@@ -30,7 +30,6 @@ nav {
     
                 .login_button {
                     border-radius: 60px;
-                    padding: 6px 35px;
                     border: 2px solid #fff;
                     transition: 0.2s ease;
                    &:hover {

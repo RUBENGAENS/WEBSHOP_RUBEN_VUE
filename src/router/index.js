@@ -10,7 +10,9 @@ import loginView from '@/views/loginView.vue';
 import contactView from '@/views/contactView.vue';
 import detailPage from '@/views/detailPage.vue';
 import checkoutView from '@/views/checkoutView.vue';
-import testView from '@/views/testView.vue';
+import bevestigingView from '@/views/bevestigingView.vue';
+import AuthView from '@/views/AuthView.vue';
+import { users } from '@/users';
 
 
 const router = createRouter({
@@ -26,7 +28,8 @@ const router = createRouter({
     },
     {
       path: '/cart',
-      component: cartView
+      component: cartView,
+      
     },
     {
       path: '/login',
@@ -40,14 +43,19 @@ const router = createRouter({
     {
         path: '/checkout',
         component: checkoutView,
+  
       },
     {
       path: '/FooterComponent',
       component: contactView,
     },
     {
+      path: '/auth',
+      component: AuthView,
+    },
+    {
         path: '/bevestiging',
-        component: testView, 
+        component: bevestigingView, 
       },
   ],
   scrollBehavior(to, from, savedPosition) {
@@ -55,6 +63,22 @@ const router = createRouter({
   },
 });
 
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
+  if (requiresAuth && !isLoggedIn()) {
+    // Als de gebruiker niet is ingelogd, navigeer naar login
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+const isLoggedIn = () => {
+  // Implementeer deze functie om te controleren of een gebruiker is ingelogd
+  // Je kunt bijvoorbeeld een Vuex store gebruiken om de gebruikersstatus bij te houden
+  // of je kunt eenvoudig controleren of er een gebruiker in de lokale opslag is opgeslagen
+  return localStorage.getItem('user') !== null;
+};
 
 export default router;

@@ -59,6 +59,7 @@ export default {
         price: this.currentProduct.price,
         size: this.selectedSize,
         quantity: this.quantity,
+        image: this.currentProduct.image, 
       };
 
       this.productStore.addToCart(productToAdd);
@@ -108,7 +109,7 @@ export default {
       </select>
       <input v-model="quantity" type="number" value="1" min="1">
       <button class="add_button" @click="addToCart">Add to cart</button>
-      <p v-if="showNotification">Product is toegevoegd aan de winkelmand!</p>
+      <p v-if="showNotification" class="opmaak">Product has been added to the shopping cart!</p>
       <p class="prodetails">Product Details</p>
       <p class="product_tekst">Elevate your space with high-quality posters crafted on thick matte paper. These posters are more than just decor. They're a fantastic way to add a delightful touch to your room or office, guaranteed to bring a sense of vibrancy to any setting.</p>
     </div>
@@ -125,6 +126,11 @@ export default {
 </template>
 
 <style>
+.opmaak {
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #2FA293;
+}
  .size_img {
   width: 100%;
  }

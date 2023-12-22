@@ -107,7 +107,11 @@ export default {
         </ul>
         
         <ul>
-          <li><router-link to="/login" class="login_button">Login</router-link></li>
+
+          <router-link to="/auth">
+            <i class="fa-solid fa-user login"></i>
+          </router-link>
+
           <li>
             <router-link to="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -132,5 +136,12 @@ export default {
 </template>
 
 <style>
- 
+ .login {
+  font-size: 25px;
+ }
+ .cart-count {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F59D72;
+  border-radius: 10px;
+ }
 </style>
